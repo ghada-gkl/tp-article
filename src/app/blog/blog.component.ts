@@ -37,9 +37,7 @@ export class BlogComponent {
       .filter(article => article.title.toLowerCase().includes(this.searchTerm.toLowerCase()))
       .sort((a, b) => b.score - a.score);
   }
-  filterArticles() {
-    
-  }
+
   
 
   upvote(article: any) {
