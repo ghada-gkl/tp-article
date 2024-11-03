@@ -1,0 +1,33 @@
+
+<div class="container my-4">
+    <div class="input-group mb-3">
+      <input type="text" class="form-control" [(ngModel)]="searchTerm" placeholder="Search articles by title..." />
+      <button class="btn btn-primary" (click)="filteredArticles">rechercher </button>
+      <button class="btn btn-primary" (click)="showAddArticle = !showAddArticle">Add Article</button>
+    </div>
+  
+    <app-add-article-form *ngIf="showAddArticle" (articleAdded)="addArticle($event)"></app-add-article-form>
+  
+    <div *ngFor="let article of filteredArticles" class="card mb-3">
+      <div class="row g-0">
+        <div class="col-md-4">
+          <img [src]="article.imageUrl" alt="Article Image" class="img-fluid rounded-start" />
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">{{ article.title }}</h5>
+            <p class="card-text">
+              <small class="text-muted">{{ article.publicationDate | date }}</small>
+            </p>
+            <p class="card-text">{{ article.description }}</p>
+            <p class="card-text">
+              <strong>Score:</strong> {{ article.score }}
+            </p>
+            <button class="btn btn-success btn-sm me-2" (click)="upvote(article)">Up</button>
+            <button class="btn btn-danger btn-sm" (click)="downvote(article)">Down</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
